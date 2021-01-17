@@ -35,7 +35,7 @@ start.addEventListener("click", function () {
 });
 
 function quizTime() {
-    var counter = 10;
+    var counter = 30;
     setInterval(function () {
         counter--;
         timer.textContent = "remaining time: " + counter;
@@ -85,14 +85,15 @@ var questions = [
 ];
 
 
-
 var lastQuestion = questions.length - 1;
 var displayedQuestion = 0;
+function nextQuestion(){
+    displayedQuestion++;
+    renderQuestion();   
+}
 
-
-function renderQuestion() {
+function renderQuestion(event) {
     var q = questions[displayedQuestion];
-
    
     question.innerHTML = "<p>" + q.question + "</p>";
     a.innerHTML = q.a;
@@ -100,37 +101,14 @@ function renderQuestion() {
     c.innerHTML = q.c;
     d.innerHTML = q.d;
     // console.log(this);
-
-    if (a || b || c || d) {
-        displayedQuestion++;
-
-    }
-    var score = 0;
-      console.log(score);
-    function checkAnswer(answer) {
-        if (answer == questions[displayedQuestion.correct]) {
-            score++;
-          
-
-        }
-    }
-
 }
+a.addEventListener("click", nextQuestion);
+b.addEventListener("click", nextQuestion);
+c.addEventListener("click", nextQuestion);
+d.addEventListener("click", nextQuestion);
 
 
 
-a.addEventListener("click", renderQuestion);
-b.addEventListener("click", renderQuestion);
-c.addEventListener("click", renderQuestion);
-d.addEventListener("click", renderQuestion);
-// var score=0;
-// function checkAnswer(answer){
-//     if(answer==questions[question].correct){
-//         scorr++
-//     }
-// }
-
-// quiz.display = "block";
 
 
 // # PseudoCode
